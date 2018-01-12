@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <device>
-    <platform>Android</platform>
+    <platformName>Android</platformName>
     <platformVersion>6.0</platformVersion>
     <deviceName>Android Emulator</deviceName>
     <appPackage>com.baidu.BaiduMap</appPackage>
