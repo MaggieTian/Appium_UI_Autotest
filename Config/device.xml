@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<device>
+    <platform>Android</platform>
+    <platformVersion>6.0</platformVersion>
+    <deviceName>Android Emulator</deviceName>
+    <appPackage>com.baidu.BaiduMap</appPackage>
+    <appActivity>com.baidu.baidumaps.WelcomeScreen</appActivity>
+</device>
