@@ -9,6 +9,7 @@ import os
 import logging
 from appium import webdriver
 
+
 project_path = os.path.abspath(os.path.join(os.path.dirname(__file__),".."))  # 获取项目根目录路径
 xml_file_path = os.path.join(project_path,"Config\\")  # 获取Config文件夹路径,所有配置文件都放在config文件夹下
 
@@ -46,8 +47,9 @@ if __name__ == "__main__":
     device = Device()
     device.get_device("device.xml")
     print(devices)
-    device.connect_device('http://localhost:4723/wd/hub')
+    driver = device.connect_device('http://localhost:4723/wd/hub')
+    driver.install_app(r"C:\Users\qtian\Documents\Appium_UI_Autotest\Apk\weibo.apk")
+    print(driver.is_app_installed("com.sina.weibo"))
 
-
-
-
+#com.sina.weibo
+#com.sina.weibo.SplashActivity
