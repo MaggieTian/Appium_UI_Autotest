@@ -8,6 +8,7 @@ import xml.etree.ElementTree as ET
 import os
 import logging
 from appium import webdriver
+import subprocess
 
 
 project_path = os.path.abspath(os.path.join(os.path.dirname(__file__),".."))  # 获取项目根目录路径
@@ -16,8 +17,7 @@ xml_file_path = os.path.join(project_path,"Config\\")  # 获取Config文件夹�
 class Device:
 
     def __init__(self):
-        global devices
-        devices = {}  # 用于存放读取到的device信息
+        self.devices = {}  # 用于存放读取到的device信息
 
     # 读取xml配置文件获取连接设备的Desired Capabilities
     def get_device(self, file_name):
@@ -26,7 +26,7 @@ class Device:
             tree = ET.parse(xml_file_path + file_name)
             root = tree.getroot()
             for node in root:  # 标签名为key,标签里的内容为value
-                devices[node.tag] = node.text
+                self.devices[node.tag] = node.text
 
         except Exception:
             logging.error("Error:parse file:" + xml_file_path + file_name)  # 记录异常错误信息
@@ -34,22 +34,78 @@ class Device:
     # 连接设备
     def connect_device(self,url):
 
-        driver = webdriver.Remote(url, devices)
+        driver = webdriver.Remote(url, self.devices)
         return driver
 
+    # 得到手机信息
+    def getPhoneInfo(self):
+        cmd = "adb -s " + self.devices['deviceName'] + " shell cat /system/build.prop "
+        print(cmd)
+        # phone_info = os.popen(cmd).readlines()
+        phone_info = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE,
+                                      stderr=subprocess.PIPE).stdout.readlines()
+        result = {"release": "", "model": "", "brand": "", "device": ""}  # 记录最终需要的手机信息参数
+        release = "ro.build.version.release="  # 版本
+        model = "ro.product.model="  # 型号
+        brand = "ro.product.brand="  # 品牌
+        device = "ro.product.device="  # 设备名
+        for line in phone_info:
+            for i in line.split():
+                temp = i.decode()
+                if temp.find(release) >= 0:
+                    result["release"] = temp[len(release):]
+                    break
+                if temp.find(model) >= 0:
+                    result["model"] = temp[len(model):]
+                    break
+                if temp.find(brand) >= 0:
+                    result["brand"] = temp[len(brand):]
+                    break
+                if temp.find(device) >= 0:
+                    result["device"] = temp[len(device):]
+                    break
+        print(result)
+        return result
 
+    # 得到最大运行内存
+    def get_men_total(self):
+        cmd = "adb -s " + self.devices['deviceName'] + " shell cat /proc/meminfo"
+        get_cmd = os.popen(cmd).readlines()
+        men_total = 0
+        men_total_str = "MemTotal"
+        for line in get_cmd:
+            if line.find(men_total_str) >= 0:
+                men_total = line[len(men_total_str) + 1:].strip()
+                break
+        return men_total
 
+    # 得到几核cpu
+    def get_cpu_kel(self):
+        cmd = "adb -s " + self.devices['deviceName'] + " shell cat /proc/cpuinfo"
+        get_cmd = os.popen(cmd).readlines()
+        find_str = "processor"
+        int_cpu = 0
+        for line in get_cmd:
+            if line.find(find_str) >= 0:
+                int_cpu += 1
+        return str(int_cpu) + "核"
 
+    # 得到手机分辨率
+    def get_app_pix(self):
+        result = os.popen("adb -s " + self.devices['deviceName']+ " shell wm size", "r")
+        return result.readline().split("Physical size:")[1]
 
 
 # debug
 if __name__ == "__main__":
     device = Device()
     device.get_device("device.xml")
-    print(devices)
+    print(device)
     driver = device.connect_device('http://localhost:4723/wd/hub')
-    driver.install_app(r"C:\Users\qtian\Documents\Appium_UI_Autotest\Apk\weibo.apk")
-    print(driver.is_app_installed("com.sina.weibo"))
+    print(device.get_app_pix())
+    print(device.get_men_total())
+    # driver.install_app(r"C:\Users\qtian\Documents\Appium_UI_Autotest\Apk\weibo.apk")
 
+#新浪微博
 #com.sina.weibo
 #com.sina.weibo.SplashActivity
