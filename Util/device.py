@@ -7,8 +7,11 @@
 import xml.etree.ElementTree as ET
 import os
 import logging
+
+import time
 from appium import webdriver
 import subprocess
+from Page.Home.home_page import HomePage
 
 
 project_path = os.path.abspath(os.path.join(os.path.dirname(__file__),".."))  # 获取项目根目录路径
@@ -104,6 +107,9 @@ if __name__ == "__main__":
     driver = device.connect_device('http://localhost:4723/wd/hub')
     print(device.get_app_pix())
     print(device.get_men_total())
+    page = HomePage(driver)
+    time.sleep(20)
+    page.login.click()
     # driver.install_app(r"C:\Users\qtian\Documents\Appium_UI_Autotest\Apk\weibo.apk")
 
 #新浪微博

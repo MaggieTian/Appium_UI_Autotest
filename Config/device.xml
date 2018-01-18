@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <device>
     <platformName>Android</platformName>
-    <platformVersion>6.0</platformVersion>
+    <platformVersion>5.1</platformVersion>
     <deviceName>58b9f28a7d52</deviceName>
-    <appPackage>com.baidu.BaiduMap</appPackage>
-    <appActivity>com.baidu.baidumaps.WelcomeScreen</appActivity>
+    <appPackage>com.sina.weibo</appPackage>
+    <appActivity>com.sina.weibo.SplashActivity</appActivity>
+    <!--<appPackage>com.baidu.BaiduMap</appPackage>-->
+    <!--<appActivity>com.baidu.baidumaps.WelcomeScreen</appActivity>-->
     <!--<app>C:\Users\qtian\Documents\Appium_UI_Autotest\Apk\dianping.apk</app>-->
 </device>
