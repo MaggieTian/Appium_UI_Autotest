@@ -19,3 +19,5 @@ def click_element(context,element):
 @When("{element} input {text}")
 def input_text(context, element, text):
     element.send_keys(text)
+
+

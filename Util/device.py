@@ -12,7 +12,7 @@ import time
 from appium import webdriver
 import subprocess
 from Page.Home.home_page import HomePage
-
+from Util.locate_helper import LocateHeper
 
 project_path = os.path.abspath(os.path.join(os.path.dirname(__file__),".."))  # 获取项目根目录路径
 xml_file_path = os.path.join(project_path,r"Config/")  # 获取Config文件夹路径,所有配置文件都放在config文件夹下
@@ -106,12 +106,11 @@ if __name__ == "__main__":
     device.get_device("device.xml")
     print(device)
     driver = device.connect_device('http://localhost:4723/wd/hub')
-    driver.find_element_by_accessibility_id()
     print(device.get_app_pix())
     print(device.get_men_total())
-    page = HomePage(driver)
+    page = HomePage()
     time.sleep(30)
-    page.login.click()
+    LocateHeper.find(driver,page.login).click()
     # driver.install_app(r"C:\Users\qtian\Documents\Appium_UI_Autotest\Apk\weibo.apk")
 
 #新浪微博

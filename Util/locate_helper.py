@@ -44,8 +44,8 @@ class LocateHeper(object):
         return _LOCATOR_MAP[method],vaule
 
     # find element
+    @staticmethod
+    def find(driver,location):
 
-    def find(self,location):
-
-        element = self.driver.find_element(by=location[0], value=location[1])
+        element = driver.find_element(by=location[0], value=location[1])
         return element
