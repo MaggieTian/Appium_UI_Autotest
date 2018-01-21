@@ -1,6 +1,9 @@
-Feature: showing off behave
+Feature: every function test in HomePage
 
-  Scenario: run a simple test
-     Given we have behave installed
-      when we implement a test
-      then behave will test it for us!
+  Scenario: run test login in homepage
+
+     When waiting for 20 seconds
+     Given In HomePage
+     When click login in HomePage
+     And waiting for 10 seconds
+#     Then should Navigate to LoginPagge

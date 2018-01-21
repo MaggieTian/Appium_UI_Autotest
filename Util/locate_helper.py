@@ -5,6 +5,9 @@
 
 from selenium.webdriver.common.by import By
 from appium.webdriver.common.mobileby import MobileBy
+import logging
+
+
 
 # support for android find element by accessibility_id and android_uiautomator
 By.ANDROID_UIAUTOMATOR = MobileBy.ANDROID_UIAUTOMATOR
@@ -19,7 +22,6 @@ _LOCATOR_MAP = {
                 'class_name': By.CLASS_NAME,
                 'accessibility_id':By.ACCESSIBILITY_ID,
                 'android_uiautomator':By.ANDROID_UIAUTOMATOR,
-
                 }
 
 
@@ -40,12 +42,27 @@ class LocateHeper(object):
 
     @staticmethod
     def locator(method,vaule):
+        if method in _LOCATOR_MAP.keys():
 
-        return _LOCATOR_MAP[method],vaule
+            return _LOCATOR_MAP[method],vaule
+        else:
+            logging.error("{0} is not in find method".format(method))
+            raise Exception
 
     # find element
-    @staticmethod
-    def find(driver,location):
+    def find(self,location):
 
-        element = driver.find_element(by=location[0], value=location[1])
+        element = self.driver.find_element(by=location[0], value=location[1])
         return element
+
+    # get the protected element
+    @staticmethod
+    def get_protect_attribute(page_object, name):
+        name = "_"+name
+        if hasattr(page_object,name):
+            return getattr(page_object,name)
+        else:
+            logging.error("there is no {1} in {0},please input right element name".format(page_object,name))
+
+
+

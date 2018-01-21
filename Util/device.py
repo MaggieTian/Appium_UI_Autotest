@@ -14,6 +14,7 @@ import subprocess
 from Page.Home.home_page import HomePage
 from Util.locate_helper import LocateHeper
 
+
 project_path = os.path.abspath(os.path.join(os.path.dirname(__file__),".."))  # 获取项目根目录路径
 xml_file_path = os.path.join(project_path,r"Config/")  # 获取Config文件夹路径,所有配置文件都放在config文件夹下
 
@@ -99,6 +100,14 @@ class Device:
         result = os.popen("adb -s " + self.devices['deviceName']+ " shell wm size", "r")
         return result.readline().split("Physical size:")[1]
 
+    # 得到手机屏幕大小
+    @classmethod
+    def get_size(cls, driver):
+
+        x = driver.get_window_size()['width']
+        y = driver.get_window_size()['height']
+        return (x, y)
+
 
 # debug
 if __name__ == "__main__":
@@ -108,10 +117,10 @@ if __name__ == "__main__":
     driver = device.connect_device('http://localhost:4723/wd/hub')
     print(device.get_app_pix())
     print(device.get_men_total())
+    print(device.get_size(driver))
     page = HomePage()
     time.sleep(30)
-    LocateHeper.find(driver,page.login).click()
-    # driver.install_app(r"C:\Users\qtian\Documents\Appium_UI_Autotest\Apk\weibo.apk")
+    LocateHeper(driver).find(page.login).click()
 
 #新浪微博
 #com.sina.weibo

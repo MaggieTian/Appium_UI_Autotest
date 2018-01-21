@@ -12,30 +12,41 @@ import logging
 class HomePage():
 
     # init the element in HomePage
-
     def __init__(self):
 
-        self.login = LocateHeper.locator("id", "com.sina.weibo:id/titleSave")
-        self.register = LocateHeper.locator("id", "com.sina.weibo:id/titleBack")
-        self.my_profile = LocateHeper.locator("accessibility_id", "我的资料")
-        self.register = LocateHeper.locator("id","com.sina.weibo:id/titleBack")
-        self.follow = LocateHeper.locator("id","com.sina.weibo:id/tv_groupName")
-        self.publish = LocateHeper.locator("id","com.sina.weibo:id/plus_icon")
-        self.find = LocateHeper.locator("accessibility_id","发现")
-        self.weibo = LocateHeper.locator("accessibility_id","微博")
-        self.page_id = LocateHeper.locator("") # 用来标识页面
+        self._login = LocateHeper.locator("id", "com.sina.weibo:id/titleSave")
+        self._register = LocateHeper.locator("id", "com.sina.weibo:id/titleBack")
+        self._my_profile = LocateHeper.locator("accessibility_id", "我的资料")
+        self._register = LocateHeper.locator("id","com.sina.weibo:id/titleBack")
+        self._follow = LocateHeper.locator("id","com.sina.weibo:id/tv_groupName")
+        self._publish = LocateHeper.locator("id","com.sina.weibo:id/plus_icon")
+        self._find = LocateHeper.locator("accessibility_id","发现")
+        self._weibo = LocateHeper.locator("accessibility_id","微博")
+        self._page_id = LocateHeper.locator("id","com.sina.weibo:id/video_root_view") # 用来标识页面
 
+    # check the current page by page id
+    def check(self,driver):
 
-    def check(self):
-
-        if self.page_id is None:
+        if self._page_id is None:
             logging.error("the home pace id is None")
             raise Exception
         else:
             try:
-                LocateHeper.find(self.page_id)
+                if LocateHeper(driver).find(self._page_id):
+                    return True
+                else:
+                    return False
+
             except Exception:
-                logging.error("can not find element"+self.page_id)
+
+                logging.error("can not find element"+self._page_id)
+
+
+
+    def get(self,name):
+        pass
+
+
 
 
 
