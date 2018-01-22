@@ -4,6 +4,7 @@
 # @File    : map.py
 
 from Page.Home.home_page import HomePage
+from  Page.Home.login_page import LoginPage
 
 '''
 this is used to the params map to correct Page Class when call function
@@ -11,5 +12,6 @@ this is used to the params map to correct Page Class when call function
 
 
 _Page_Map = {
-            'HomePage':HomePage
+            'HomePage':HomePage,
+            'LoginPage':LoginPage
 }

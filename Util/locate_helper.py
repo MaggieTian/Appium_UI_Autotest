@@ -53,7 +53,10 @@ class LocateHeper(object):
     def find(self,location):
 
         element = self.driver.find_element(by=location[0], value=location[1])
-        return element
+        if element:
+            return element
+        else:
+            logging.error("not found element {0}".format(location))
 
     # get the protected element
     @staticmethod

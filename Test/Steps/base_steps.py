@@ -24,13 +24,19 @@ def click_element(context,element,page):
         element = LocateHeper.get_protect_attribute(page, element)
         LocateHeper(context.driver).find(element).click()
 
+    else:
+        logging.error("{0} map to Page object fail".format(page))
+
 
 @When("{element} input {text} in {page}")
 def input_text(context, element, text,page):
     if page in _Page_Map.keys():
         page = _Page_Map[page]()
         element = LocateHeper.get_protect_attribute(page,element)
-        LocateHeper(context.driver).find(element).send_keys(text)
+        LocateHeper(context.driver).find(element).click()
+    else:
+        logging.error("{0} map to Page object fail".format(page))
+
 
 
 @When("waiting for {n} seconds")
@@ -50,15 +56,16 @@ def in_page(context,Page):
         page = _Page_Map[Page]()
         if not page.check(context.driver):
             logging.error("not in page {0}".format(Page))
+    else:
+        logging.error("{0} map to Page object fail".format(Page))
 
 
 # 跳转到某个页面和处于某个页面是同样的实现
 @Then("should Navigate to {Page}")
 def navigat_to_page(context,Page):
     context.execute_steps('''
-    Given In Page
+    Given In {Page}
     ''')
-
 
 def find_text(text):
     pass
