@@ -6,10 +6,9 @@ Feature: every function test in HomePage
      Given In HomePage
      When click login in HomePage
      And waiting for 10 seconds
-    Then should Navigate to LoginPage
-     When username input 1729430864@qq.com in LoinPage
-     And  pwd input tianqi57714670 in LoinPage
+     Then should Navigate to LoginPage
+     When username input 13248226806 in LoginPage
+     And  pwd input tianqi57714670QQ in LoginPage
      And click login_button in LoginPage
      And  waiting for 10 seconds
      Then should Navigate to HomePage
-    

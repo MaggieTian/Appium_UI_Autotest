@@ -33,4 +33,5 @@ class LoginPage():
                     return False
 
             except Exception:
-                logging.error("find elment {0} fail in {1}".format(self._pageid,"login page"))
+
+                logging.error("find elment {0} fail in {1}".format(self._pageid[1],"login page"))

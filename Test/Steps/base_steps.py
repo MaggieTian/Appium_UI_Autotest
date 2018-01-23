@@ -10,6 +10,11 @@ from behave import *
 from Util.map import _Page_Map
 from Util.locate_helper import LocateHeper
 
+logging.basicConfig(level=logging.DEBUG,
+                format='%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s %(message)s',
+                datefmt='%a, %d %b %Y %H:%M:%S',
+                filename=r'/Users/tianqi/Desktop/study/Appium_UI_Autotest/Log/myapp.log',
+                filemode='w')
 
 '''
 there are some common steps,such as click element or some input text into element
@@ -17,23 +22,25 @@ these steps not belong to some page
 '''
 
 
-@When("click {element} in {page}")
-def click_element(context,element,page):
-    if page in _Page_Map.keys():
-        page = _Page_Map[page]()
+@When("click {element} in {Page}")
+def click_element(context,element,Page):
+    logging.info("click")
+    if Page in _Page_Map.keys():
+        page = _Page_Map[Page]()
         element = LocateHeper.get_protect_attribute(page, element)
         LocateHeper(context.driver).find(element).click()
 
     else:
-        logging.error("{0} map to Page object fail".format(page))
+        logging.error("{0} map to Page object fail".format(Page))
 
 
 @When("{element} input {text} in {page}")
-def input_text(context, element, text,page):
+def input_text(context, element, text, page):
+    logging.info("input")
     if page in _Page_Map.keys():
         page = _Page_Map[page]()
         element = LocateHeper.get_protect_attribute(page,element)
-        LocateHeper(context.driver).find(element).click()
+        LocateHeper(context.driver).find(element).send_keys(text)
     else:
         logging.error("{0} map to Page object fail".format(page))
 
@@ -41,6 +48,7 @@ def input_text(context, element, text,page):
 
 @When("waiting for {n} seconds")
 def wait_for(context,n):
+    logging.info("waiting")
     time.sleep(int(n))
 
 
@@ -50,7 +58,8 @@ def slide_screen(context):
 
 
 @Given("In {Page}")
-def in_page(context,Page):
+def in_page(context, Page):
+    logging.info("in page")
 
     if Page in _Page_Map.keys():
         page = _Page_Map[Page]()
@@ -62,10 +71,13 @@ def in_page(context,Page):
 
 # 跳转到某个页面和处于某个页面是同样的实现
 @Then("should Navigate to {Page}")
-def navigat_to_page(context,Page):
+def navigat_to_page(context, Page):
+
+    logging.info("navagite")
     context.execute_steps('''
-    Given In {Page}
-    ''')
+    Given In {0}
+    '''.format(Page))
+
 
 def find_text(text):
     pass
