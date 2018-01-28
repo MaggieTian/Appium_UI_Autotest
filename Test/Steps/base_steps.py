@@ -45,7 +45,6 @@ def input_text(context, element, text, page):
         logging.error("{0} map to Page object fail".format(page))
 
 
-
 @When("waiting for {n} seconds")
 def wait_for(context,n):
     logging.info("waiting")
