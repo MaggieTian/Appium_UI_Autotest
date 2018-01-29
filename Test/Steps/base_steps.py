@@ -10,11 +10,11 @@ from behave import *
 from Util.map import _Page_Map
 from Util.locate_helper import LocateHeper
 
-logging.basicConfig(level=logging.DEBUG,
-                format='%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s %(message)s',
-                datefmt='%a, %d %b %Y %H:%M:%S',
-                filename=r'/Users/tianqi/Desktop/study/Appium_UI_Autotest/Log/myapp.log',
-                filemode='w')
+# logging.basicConfig(level=logging.DEBUG,
+#                 format='%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s %(message)s',
+#                 datefmt='%a, %d %b %Y %H:%M:%S',
+#                 filename=r'/Users/tianqi/Desktop/study/Appium_UI_Autotest/Log/myapp.log',
+#                 filemode='w')
 
 '''
 there are some common steps,such as click element or some input text into element

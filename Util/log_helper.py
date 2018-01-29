@@ -14,10 +14,17 @@ import os
 
 
 class LogHelper:
+
+    # 获取Config目录
+
+    project_path = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))  # 获取项目根目录路径
+    config_file_path = os.path.join(project_path, r"Config/")  # 获取Config文件夹路径,所有配置文件都放在config文件夹下
+
     def __init__(self):
         pass
 
-    def setup_logging(self, default_path='log_config.json', default_level=logging.INFO):
+    @staticmethod
+    def setup_logging(default_path='log_config.json', default_level=logging.INFO):
         """Setup logging configuration
 
         """
@@ -28,3 +35,12 @@ class LogHelper:
             logging.config.dictConfig(config)
         else:
             logging.basicConfig(level=default_level)
+
+
+
+
+
+
+
+
+
