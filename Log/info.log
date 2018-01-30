@@ -1,0 +1,37 @@
+2018-01-30 20:59:16,685 - root - INFO - logging配置文件路径是/Users/tianqi/Desktop/study/Appium_UI_Autotest/Config/log_config.json
+2018-01-30 20:59:16,687 - root - INFO - waiting
+2018-01-30 20:59:36,692 - root - INFO - in page
+2018-01-30 20:59:36,794 - root - INFO - click
+2018-01-30 20:59:37,277 - root - INFO - waiting
+2018-01-30 20:59:47,281 - root - INFO - navagite
+2018-01-30 20:59:47,282 - root - INFO - in page
+2018-01-30 20:59:47,369 - root - ERROR - find elment com.sina.weibo:id/bnLogin fail in login page
+2018-01-30 20:59:47,369 - root - ERROR - not in page LoginPage
+2018-01-30 20:59:47,370 - root - INFO - input
+2018-01-30 21:03:09,990 - root - INFO - logging配置文件路径是/Users/tianqi/Desktop/study/Appium_UI_Autotest/Config/log_config.json
+2018-01-30 21:03:09,993 - root - INFO - waiting
+2018-01-30 21:03:29,999 - root - INFO - in page
+2018-01-30 21:03:30,065 - root - INFO - click
+2018-01-30 21:03:30,446 - root - INFO - waiting
+2018-01-30 21:03:40,452 - root - INFO - navagite
+2018-01-30 21:03:40,453 - root - INFO - in page
+2018-01-30 21:03:41,289 - root - ERROR - find elment com.sina.weibo:id/bnLogin fail in login page
+Traceback (most recent call last):
+  File "/Users/tianqi/Desktop/study/Appium_UI_Autotest/Page/Home/login_page.py", line 30, in check
+    if LocateHeper(driver).find(self._pageid):
+  File "/Users/tianqi/Desktop/study/Appium_UI_Autotest/Util/locate_helper.py", line 55, in find
+    element = self.driver.find_element(by=location[0], value=location[1])
+  File "/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/selenium/webdriver/remote/webdriver.py", line 752, in find_element
+    'value': value})['value']
+  File "/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/selenium/webdriver/remote/webdriver.py", line 236, in execute
+    self.error_handler.check_response(response)
+  File "/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/appium/webdriver/errorhandler.py", line 29, in check_response
+    raise wde
+  File "/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/appium/webdriver/errorhandler.py", line 24, in check_response
+    super(MobileErrorHandler, self).check_response(response)
+  File "/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/selenium/webdriver/remote/errorhandler.py", line 192, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: An element could not be located on the page using the given search parameters.
+
+2018-01-30 21:03:41,290 - root - ERROR - not in page LoginPage
+2018-01-30 21:03:41,290 - root - INFO - input

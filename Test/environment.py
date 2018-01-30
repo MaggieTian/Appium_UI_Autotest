@@ -16,14 +16,18 @@ import logging
 def before_all(context):
 
     # 读取配置文件连接手机
-    device = Device()
-    device.get_device("device.xml")
-    context.driver = device.connect_device('http://localhost:4723/wd/hub')
+    try:
+        device = Device()
+        device.get_device("device.xml")
+        context.driver = device.connect_device('http://localhost:4723/wd/hub')
 
-    # 设置日志配置信息
-    config = LogHelper.config_file_path
-    LogHelper.setup_logging(config + r"log_config.json")
-    logging.info(config + r"／log_config.json")
+    except Exception:
+        logging.exception("连接手机过程中出现错误",exc_info=True)
+
+
+        # 设置日志配置信息
+        LogHelper.setup_logging("log_config.json")
+
 
 
 

@@ -34,4 +34,4 @@ class LoginPage():
 
             except Exception:
 
-                logging.error("find elment {0} fail in {1}".format(self._pageid[1],"login page"))
+                logging.exception("find elment {0} fail in {1}".format(self._pageid[1],"login page"),exc_info=True)
