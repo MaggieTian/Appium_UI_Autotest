@@ -21,12 +21,10 @@ def before_all(context):
         device.get_device("device.xml")
         context.driver = device.connect_device('http://localhost:4723/wd/hub')
 
-    except Exception:
-        logging.exception("连接手机过程中出现错误",exc_info=True)
-
-
         # 设置日志配置信息
         LogHelper.setup_logging("log_config.json")
+    except Exception:
+        logging.exception("连接手机过程中出现错误",exc_info=True)
 
 
 

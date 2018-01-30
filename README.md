@@ -1,10 +1,16 @@
 # Appium_UI_Autotest
 To Do:
-week1-->2017.1.21
+## week1-->2017.1.21
 完成page和baseStep部分内容
-week2-->2017.1.28
+
+## week2-->2017.1.28
+
 1.添加页面专属steps
 2.日志详细记录与异常处理
+
+# week3-->2017.2.04
+
+完成结果运行结果收集
 
 # Dev Notes
 ## 2017.1.12
@@ -39,3 +45,4 @@ week2-->2017.1.28
 ## 2017.1.30
 
 1.完成日志详细记录与异常处理
+2.添加setting页面，login_steps处理跟login有关的steps

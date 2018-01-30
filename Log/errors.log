@@ -1,9 +1,58 @@
-2018-01-30 20:59:47,369 - root - ERROR - find elment com.sina.weibo:id/bnLogin fail in login page
-2018-01-30 20:59:47,369 - root - ERROR - not in page LoginPage
-2018-01-30 21:03:41,289 - root - ERROR - find elment com.sina.weibo:id/bnLogin fail in login page
+2018-01-30 21:58:34,563 - root - ERROR - can not find elementcom.sina.weibo:id/tv_groupName
+2018-01-30 21:58:34,565 - root - ERROR - not in page HomePage
+2018-01-30 22:08:19,121 - root - ERROR - 注销过程中出现错误
 Traceback (most recent call last):
-  File "/Users/tianqi/Desktop/study/Appium_UI_Autotest/Page/Home/login_page.py", line 30, in check
-    if LocateHeper(driver).find(self._pageid):
+  File "Test/steps/login_steps.py", line 19, in logout
+    '''.format(home_page, my))
+  File "/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/behave/runner.py", line 278, in execute_steps
+    steps = self.feature.parser.parse_steps(steps_text)
+  File "/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/behave/parser.py", line 531, in parse_steps
+    self.action(line)
+  File "/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/behave/parser.py", line 267, in action
+    raise ParserError(msg, None, self.filename)
+behave.parser.ParserError: Failed to parse <string>: 
+Parser failure in state steps, at line 2: 'click <Page.Home.home_page.HomePage object at 0x1032cd9e8> in ('accessibility id', '我的资料')'
+
+2018-01-30 22:09:33,001 - root - ERROR - 注销过程中出现错误
+Traceback (most recent call last):
+  File "Test/steps/login_steps.py", line 19, in logout
+    '''.format(my, home_page))
+  File "/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/behave/runner.py", line 278, in execute_steps
+    steps = self.feature.parser.parse_steps(steps_text)
+  File "/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/behave/parser.py", line 531, in parse_steps
+    self.action(line)
+  File "/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/behave/parser.py", line 267, in action
+    raise ParserError(msg, None, self.filename)
+behave.parser.ParserError: Failed to parse <string>: 
+Parser failure in state steps, at line 2: 'click ('accessibility id', '我的资料') in <Page.Home.home_page.HomePage object at 0x1032cd7b8>'
+
+2018-01-30 22:12:06,829 - root - ERROR - 注销过程中出现错误
+Traceback (most recent call last):
+  File "Test/steps/login_steps.py", line 15, in logout
+    '''.format("my_profile", "HomePage"))
+  File "/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/behave/runner.py", line 278, in execute_steps
+    steps = self.feature.parser.parse_steps(steps_text)
+  File "/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/behave/parser.py", line 531, in parse_steps
+    self.action(line)
+  File "/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/behave/parser.py", line 267, in action
+    raise ParserError(msg, None, self.filename)
+behave.parser.ParserError: Failed to parse <string>: 
+Parser failure in state steps, at line 2: 'click my_profile in HomePage'
+
+2018-01-30 23:18:35,334 - root - ERROR - 注销过程中出现错误
+Traceback (most recent call last):
+  File "Test/steps/login_steps.py", line 16, in logout
+    '''.format("my_profile", "HomePage"))
+  File "/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/behave/runner.py", line 287, in execute_steps
+    assert False, message
+AssertionError: FAILED SUB-STEP: When click my_profile in HomePage
+Substep info: Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/behave/model.py", line 1456, in run
+    match.run(runner.context)
+  File "/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/behave/model.py", line 1903, in run
+    self.func(context, *args, **kwargs)
+  File "Test/steps/base_steps.py", line 26, in click_element
+    LocateHeper(context.driver).find(element).click()
   File "/Users/tianqi/Desktop/study/Appium_UI_Autotest/Util/locate_helper.py", line 55, in find
     element = self.driver.find_element(by=location[0], value=location[1])
   File "/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/selenium/webdriver/remote/webdriver.py", line 752, in find_element
@@ -18,4 +67,33 @@ Traceback (most recent call last):
     raise exception_class(message, screen, stacktrace)
 selenium.common.exceptions.NoSuchElementException: Message: An element could not be located on the page using the given search parameters.
 
-2018-01-30 21:03:41,290 - root - ERROR - not in page LoginPage
+
+2018-01-30 23:28:03,705 - root - ERROR - 注销过程中出现错误
+Traceback (most recent call last):
+  File "Test/steps/login_steps.py", line 16, in logout
+    '''.format("my_profile", "HomePage"))
+  File "/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/behave/runner.py", line 287, in execute_steps
+    assert False, message
+AssertionError: FAILED SUB-STEP: When click my_profile in HomePage
+Substep info: Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/behave/model.py", line 1456, in run
+    match.run(runner.context)
+  File "/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/behave/model.py", line 1903, in run
+    self.func(context, *args, **kwargs)
+  File "Test/steps/base_steps.py", line 26, in click_element
+    LocateHeper(context.driver).find(element).click()
+  File "/Users/tianqi/Desktop/study/Appium_UI_Autotest/Util/locate_helper.py", line 55, in find
+    element = self.driver.find_element(by=location[0], value=location[1])
+  File "/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/selenium/webdriver/remote/webdriver.py", line 752, in find_element
+    'value': value})['value']
+  File "/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/selenium/webdriver/remote/webdriver.py", line 236, in execute
+    self.error_handler.check_response(response)
+  File "/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/appium/webdriver/errorhandler.py", line 29, in check_response
+    raise wde
+  File "/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/appium/webdriver/errorhandler.py", line 24, in check_response
+    super(MobileErrorHandler, self).check_response(response)
+  File "/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/selenium/webdriver/remote/errorhandler.py", line 192, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: An element could not be located on the page using the given search parameters.
+
+
