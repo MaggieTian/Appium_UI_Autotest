@@ -72,6 +72,26 @@ def navigat_to_page(context, Page):
     Given In {0}
     '''.format(Page))
 
+@Then("there should be {element} in {page}")
+def check_element(context, element, page):
+    logging.info("there should be {element} in {page}".format(element=element,page=page))
+    if page in _Page_Map.keys():
+        page = _Page_Map[page]()
+        element = LocateHeper.get_protect_attribute(page, element)
+        if LocateHeper(context.driver).find(element):
+            pass
+        else:
+            logging.error("找不到元素{element} in {page}".format(element=element,page=page))
+            raise Exception
+
+    else:
+        logging.error("给定参数{page}不再映射中".format(page=page))
+        raise Exception
+
+
+
+
+
 
 def find_text(text):
     pass
