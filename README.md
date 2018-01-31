@@ -8,7 +8,7 @@ To Do:
 1.添加页面专属steps
 2.日志详细记录与异常处理
 
-# week3-->2017.2.04
+## week3-->2017.2.04
 
 完成结果运行结果收集
 
@@ -46,3 +46,14 @@ To Do:
 
 1.完成日志详细记录与异常处理
 2.添加setting页面，login_steps处理跟login有关的steps
+
+## 2017.1.31
+1. 问题发现与解决：
+在命令行（终端）使用behave运行feature,需要做以下配置：
+ a)在C:\Python36\Lib\site-packages(该目录加入环境变量)目录下新建**.pth文件，里面写入各个package的绝对路径。
+ 原因是在IDE里运行py文件和命令行运行查找包的方式不一样；IDE会在项目根目录所有目录下去查找，而终端只会在当前目录下查找。
+ 因此会出现包引入的错误现象。
+ b)修改behave目录下runner.py文件为，(打开文件时增加encoding="utf-8"以支持utf-8编码，不然项目里出现中文字符就会报编码错误)：
+  with open(filename,encoding="utf-8") as f:
+  此操作针对于python3以上的python版本
+
