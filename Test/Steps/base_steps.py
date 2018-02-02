@@ -19,7 +19,7 @@ these steps not belong to some page
 
 @When("click {element} in {Page}")
 def click_element(context,element,Page):
-    logging.info("click")
+    logging.info("click {element} in {Page}".format(element=element, Page=Page))
     if Page in _Page_Map.keys():
         page = _Page_Map[Page]()
         element = LocateHeper.get_protect_attribute(page, element)
@@ -31,7 +31,7 @@ def click_element(context,element,Page):
 
 @When("{element} input {text} in {page}")
 def input_text(context, element, text, page):
-    logging.info("input")
+    logging.info("{element} input {text} in {page}".format(element=element,text=text,page=page))
     if page in _Page_Map.keys():
         page = _Page_Map[page]()
         element = LocateHeper.get_protect_attribute(page,element)
@@ -42,7 +42,7 @@ def input_text(context, element, text, page):
 
 @When("waiting for {n} seconds")
 def wait_for(context,n):
-    logging.info("waiting")
+    logging.info("waiting for {n} seconds".format(n=n))
     time.sleep(int(n))
 
 
@@ -53,7 +53,7 @@ def slide_screen(context):
 
 @Given("In {Page}")
 def in_page(context, Page):
-    logging.info("in page")
+    logging.info("In {Page}".format(Page=Page))
 
     if Page in _Page_Map.keys():
         page = _Page_Map[Page]()
@@ -67,10 +67,11 @@ def in_page(context, Page):
 @Then("should Navigate to {Page}")
 def navigat_to_page(context, Page):
 
-    logging.info("navagite")
+    logging.info("should Navigate to {Page}".format(Page=Page))
     context.execute_steps('''
     Given In {0}
     '''.format(Page))
+
 
 @Then("there should be {element} in {page}")
 def check_element(context, element, page):
@@ -81,6 +82,7 @@ def check_element(context, element, page):
         if LocateHeper(context.driver).find(element):
             pass
         else:
+            context.driver.get_screenshot_as_file(r'/Users/tianqi/Desktop/study/Appium_UI_Autotest/Log/test.png')
             logging.error("找不到元素{element} in {page}".format(element=element,page=page))
             raise Exception
 
@@ -89,8 +91,16 @@ def check_element(context, element, page):
         raise Exception
 
 
-
-
+@When("Switch to alert window and click {button} in {page}")
+def swich_and_click(context, button, page):
+    logging.info("Switch to alert window and click {button} in {page}".format(button=button,page=page))
+    try:
+        context.driver.switch_to_alert()
+        button = LocateHeper.get_protect_attribute(_Page_Map[page](), button)
+        LocateHeper(context.driver).find(button).click()
+    except Exception:
+        context.driver.get_screenshot_as_file(r'/Users/tianqi/Desktop/study/Appium_UI_Autotest/Log/test.png')
+        logging.error("can not Switch to alert window and click {button}".format(button=button))
 
 
 def find_text(text):

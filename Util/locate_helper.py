@@ -65,6 +65,7 @@ class LocateHeper(object):
         if hasattr(page_object,name):
             return getattr(page_object,name)
         else:
+            context.driver.get_screenshot_as_file(r'/Users/tianqi/Desktop/study/Appium_UI_Autotest/Log/test.png')
             logging.error("there is no {1} in {0},please input right element name".format(page_object,name))
 
 
