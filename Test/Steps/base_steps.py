@@ -7,10 +7,8 @@
 import logging
 import time
 from behave import *
-from Util.map import _Page_Map
 from Util.locate_helper import LocateHeper
-
-
+from Util.check import check_page
 '''
 there are some common steps,such as click element or some input text into element
 these steps not belong to some page
@@ -20,24 +18,23 @@ these steps not belong to some page
 @When("click {element} in {Page}")
 def click_element(context,element,Page):
     logging.info("click {element} in {Page}".format(element=element, Page=Page))
-    if Page in _Page_Map.keys():
-        page = _Page_Map[Page]()
+    try:
+        page = check_page(Page)
         element = LocateHeper.get_protect_attribute(page, element)
         LocateHeper(context.driver).find(element).click()
-
-    else:
-        logging.error("{0} map to Page object fail".format(Page))
+    except Exception as e:
+        logging.exception("click {element} in {Page} occurs exception".format(element=element, Page=Page), exc_info=True)
 
 
 @When("{element} input {text} in {page}")
 def input_text(context, element, text, page):
     logging.info("{element} input {text} in {page}".format(element=element,text=text,page=page))
-    if page in _Page_Map.keys():
-        page = _Page_Map[page]()
+    try:
+        page = check_page(page)
         element = LocateHeper.get_protect_attribute(page,element)
         LocateHeper(context.driver).find(element).send_keys(text)
-    else:
-        logging.error("{0} map to Page object fail".format(page))
+    except Exception:
+        logging.exception("{element} input {text} in {page} occurs exception".format(element=element,text=text,page=page),exc_info=True)
 
 
 @When("waiting for {n} seconds")
@@ -54,13 +51,12 @@ def slide_screen(context):
 @Given("In {Page}")
 def in_page(context, Page):
     logging.info("In {Page}".format(Page=Page))
-
-    if Page in _Page_Map.keys():
-        page = _Page_Map[Page]()
-        if not page.check(context.driver):
-            logging.error("not in page {0}".format(Page))
-    else:
-        logging.error("{0} map to Page object fail".format(Page))
+    page = check_page(Page)
+    # if not in parameter page,raise exception to stop run next steps
+    if not page.check(context.driver):
+        msg = "not in page {0}".format(Page)
+        logging.error(msg)
+        raise Exception(msg)
 
 
 # 跳转到某个页面和处于某个页面是同样的实现
@@ -76,18 +72,13 @@ def navigat_to_page(context, Page):
 @Then("there should be {element} in {page}")
 def check_element(context, element, page):
     logging.info("there should be {element} in {page}".format(element=element,page=page))
-    if page in _Page_Map.keys():
-        page = _Page_Map[page]()
-        element = LocateHeper.get_protect_attribute(page, element)
-        if LocateHeper(context.driver).find(element):
-            pass
-        else:
-            context.driver.get_screenshot_as_file(r'/Users/tianqi/Desktop/study/Appium_UI_Autotest/Log/test.png')
-            logging.error("找不到元素{element} in {page}".format(element=element,page=page))
-            raise Exception
-
+    page = check_page(page)
+    element = LocateHeper.get_protect_attribute(page, element)
+    if LocateHeper(context.driver).find(element):
+        pass
     else:
-        logging.error("给定参数{page}不再映射中".format(page=page))
+        context.driver.get_screenshot_as_file(r'/Users/tianqi/Desktop/study/Appium_UI_Autotest/Log/test.png')
+        logging.error("找不到元素{element} in {page}".format(element=element,page=page))
         raise Exception
 
 
@@ -96,7 +87,8 @@ def swich_and_click(context, button, page):
     logging.info("Switch to alert window and click {button} in {page}".format(button=button,page=page))
     try:
         context.driver.switch_to_alert()
-        button = LocateHeper.get_protect_attribute(_Page_Map[page](), button)
+        page = check_page(page)
+        button = LocateHeper.get_protect_attribute(page, button)
         LocateHeper(context.driver).find(button).click()
     except Exception:
         context.driver.get_screenshot_as_file(r'/Users/tianqi/Desktop/study/Appium_UI_Autotest/Log/test.png')

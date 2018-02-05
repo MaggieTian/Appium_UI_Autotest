@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
 # @Time    : 2018/1/30
-# @Author  : 
+# @Author  : MaggieTian
 # @File    : login_steps.py
 
 from behave import *
-
 
 @When("sign out")
 def logout(context):

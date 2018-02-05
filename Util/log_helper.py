@@ -18,7 +18,7 @@ class LogHelper:
     # 获取Config目录
 
     project_path = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))  # 获取项目根目录路径
-    config_file_path = os.path.join(project_path, r"Config/")  # 获取Config文件夹路径,所有配置文件都放在config文件夹下
+    config_file_path = os.path.join(project_path, "Config"+os.sep)  # 获取Config文件夹路径,所有配置文件都放在config文件夹下
 
     def __init__(self):
         pass
@@ -44,7 +44,6 @@ class LogHelper:
         logging.info("logging配置文件路径是{0}".format(path))
 
 # Debug
-
 if __name__ == "__main__":
 
     print(LogHelper.config_file_path)

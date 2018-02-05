@@ -28,8 +28,9 @@ class HomePage():
     def check(self,driver):
 
         if self._page_id is None:
-            logging.error("the home page id is None",self.__class__.__name__)
-            raise Exception
+            msg = "the {page} id is None".format(page=self.__class__.__name__)
+            logging.error(msg)
+            raise Exception(msg)
         else:
             try:
                 if LocateHeper(driver).find(self._page_id):
@@ -38,10 +39,7 @@ class HomePage():
                     return False
 
             except Exception:
-
                 logging.error("can not find element"+self._page_id[1])
-
-
 
     def get(self,name):
         pass
