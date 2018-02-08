@@ -3,7 +3,6 @@
 # @Author  : MaggieTian
 # @File    : log_helper.py
 
-
 import json
 import logging.config
 import os
@@ -19,9 +18,6 @@ class LogHelper:
     config_file_path = os.path.join(project_path, "Config"+os.sep)                 # 获取Config文件夹路径,所有配置文件都放在config文件夹下
     root_log_path = os.path.join(project_path,"Log"+os.sep)                        # 获取项目存放Log路径
     root_result = os.path.join(project_path, "Result"+os.sep)                      # 获取存放结果的根目录Result
-    def __init__(self):
-
-        pass
 
     @staticmethod
     def setup_logging(default_path='log_config.json', default_level=logging.INFO):
@@ -49,6 +45,7 @@ class LogHelper:
         配置logger
         :return: logger
         '''
+
         logger = logging.getLogger("output")
         formater = logging.Formatter('%(asctime)s %(levelname)-8s: %(message)s')
         # 每次重新运行feature配置时都会覆盖原来的日志
@@ -56,8 +53,6 @@ class LogHelper:
         file_handler.setFormatter(formater)
         logger.addHandler(file_handler)
         return logger
-
-
 
 # Debug
 if __name__ == "__main__":

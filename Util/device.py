@@ -25,6 +25,11 @@ class Device:
 
     # 读取xml配置文件获取连接设备的Desired Capabilities
     def get_device(self, file_name):
+        '''
+
+        :param file_name: the xml config file used to store the data for conneting phone
+        :return: no vaule
+        '''
 
         try:
             tree = ET.parse(xml_file_path + file_name)
@@ -38,6 +43,10 @@ class Device:
 
     # 连接设备
     def connect_device(self,url):
+        '''
+        :param url:the url for conneting phone by driver
+        :return: if sucessfully connect return driver,else return False
+        '''
         try:
             driver = webdriver.Remote(url, self.devices)
             return driver
