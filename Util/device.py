@@ -31,16 +31,18 @@ class Device:
             root = tree.getroot()
             for node in root:  # 标签名为key,标签里的内容为value
                 self.devices[node.tag] = node.text
-            print(self.devices)
+            print("手机设备信息：{device}".format(device=self.devices))
 
         except Exception:
             logging.error("Error:parse file:" + xml_file_path + file_name)  # 记录异常错误信息
 
     # 连接设备
     def connect_device(self,url):
-
-        driver = webdriver.Remote(url, self.devices)
-        return driver
+        try:
+            driver = webdriver.Remote(url, self.devices)
+            return driver
+        except Exception:
+            return False
 
     # 得到手机信息
     def getPhoneInfo(self):

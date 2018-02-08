@@ -17,12 +17,13 @@ these steps not belong to some page
 
 @When("click {element} in {Page}")
 def click_element(context,element,Page):
+
     try:
         page = check_page(Page)
         element = LocateHeper.get_protect_attribute(page, element)
         LocateHeper(context.driver).find(element).click()
-    except Exception as e:
-        logging.exception("click {element} in {Page} occurs exception".format(element=element, Page=Page), exc_info=True)
+    except Exception:
+        context.logger.exception("click {element} in {Page} occurs exception".format(element=element, Page=Page), exc_info=True)
 
 
 @When("{element} input {text} in {page}")
@@ -32,7 +33,7 @@ def input_text(context, element, text, page):
         element = LocateHeper.get_protect_attribute(page,element)
         LocateHeper(context.driver).find(element).send_keys(text)
     except Exception:
-        logging.exception("{element} input {text} in {page} occurs exception".format(element=element,text=text,page=page),exc_info=True)
+        context.logger.exception("{element} input {text} in {page} occurs exception".format(element=element,text=text,page=page),exc_info=True)
 
 
 @When("waiting for {n} seconds")
@@ -51,7 +52,7 @@ def in_page(context, Page):
     # if not in parameter page,raise exception to stop run next steps
     if not page.check(context.driver):
         msg = "not in page {0}".format(Page)
-        logging.error(msg)
+        context.logger.error(msg)
         raise Exception(msg)
 
 
@@ -71,7 +72,7 @@ def check_element(context, element, page):
         pass
     else:
         context.driver.get_screenshot_as_file(r'/Users/tianqi/Desktop/study/Appium_UI_Autotest/Log/test.png')
-        logging.error("找不到元素{element} in {page}".format(element=element,page=page))
+        context.logger.error("找不到元素{element} in {page}".format(element=element,page=page))
         raise Exception
 
 
@@ -84,7 +85,7 @@ def swich_and_click(context, button, page):
         LocateHeper(context.driver).find(button).click()
     except Exception:
         context.driver.get_screenshot_as_file(r'/Users/tianqi/Desktop/study/Appium_UI_Autotest/Log/test.png')
-        logging.error("can not Switch to alert window and click {button}".format(button=button))
+        context.logger.error("can not Switch to alert window and click {button}".format(button=button))
 
 
 def find_text(text):

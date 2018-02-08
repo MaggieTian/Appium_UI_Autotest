@@ -52,14 +52,14 @@ class LocateHeper(object):
     # find element
     def find(self,location):
 
-        if self.driver:
+        try:
             element = self.driver.find_element(by=location[0], value=location[1])
             if element:
                 return element
             else:
                 logging.error("not found element {0}".format(location))
-        else:
-            logging.error("there is no driver object,please check!")
+        except Exception:
+            logging.exception("there is no driver object,please check!",exc_info=True)
 
     # get the protected element
     @staticmethod
