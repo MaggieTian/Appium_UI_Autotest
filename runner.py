@@ -19,12 +19,10 @@ if root:
         if node.text:
             command += " --tags={}".format(node.text)
 command += r" >{path}{sep}{filename}".format(path=root_path+os.sep+"Log", sep=os.sep, filename="out.txt")
-print(command)
 logging.info("run command is {cmd}".format(cmd=command))
 
 
 test_path = root_path+os.sep+"Test"
 os.chdir(test_path)
 p = os.popen("dir")
-print(p.read())
 os.popen(command)

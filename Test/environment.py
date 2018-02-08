@@ -7,14 +7,18 @@ from Util.device import Device
 from Util.log_helper import LogHelper
 import logging
 
+
 '''
  在所有feature开始之前连接手机，结束之后断开连接
 
 '''
+def before_scenario(context, scenario):
+    pass
 
+def after_scenario(context, scenario):
+    pass
 
 def before_all(context):
-
     # 读取配置文件连接手机
     try:
         device = Device()
@@ -26,11 +30,10 @@ def before_all(context):
     except Exception:
         logging.exception("连接手机过程中出现错误",exc_info=True)
 
-
-
-
-
 # 关闭连接
 def after_all(context):
-
-    context.driver.quit()
+    print(context.failed)
+    try:
+        context.driver.quit()
+    except Exception:
+        logging.exception("can not quit dirver", exc_info=True)

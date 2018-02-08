@@ -52,11 +52,14 @@ class LocateHeper(object):
     # find element
     def find(self,location):
 
-        element = self.driver.find_element(by=location[0], value=location[1])
-        if element:
-            return element
+        if self.driver:
+            element = self.driver.find_element(by=location[0], value=location[1])
+            if element:
+                return element
+            else:
+                logging.error("not found element {0}".format(location))
         else:
-            logging.error("not found element {0}".format(location))
+            logging.error("there is no driver object,please check!")
 
     # get the protected element
     @staticmethod
@@ -65,7 +68,6 @@ class LocateHeper(object):
         if hasattr(page_object,name):
             return getattr(page_object,name)
         else:
-            context.driver.get_screenshot_as_file(r'/Users/tianqi/Desktop/study/Appium_UI_Autotest/Log/test.png')
             logging.error("there is no {1} in {0},please input right element name".format(page_object,name))
 
 
