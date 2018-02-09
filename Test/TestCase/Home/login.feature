@@ -16,4 +16,9 @@ Feature: every function test in HomePage
      And waiting for 3 seconds
      Then should Navigate to LoginPage
 
+  @base
+  Scenario: test waiting for
+    When  waiting for 10 seconds
+
+
 

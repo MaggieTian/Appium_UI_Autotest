@@ -20,8 +20,8 @@ def before_feature(context,feature):
 
 def after_feature(context, feature):
     try:
-        header = ['', '', '',feature.status]
-        context.csv.writerow(header)
+        row = ['', '', '', '', feature.status]  # 写入feature最终结果
+        context.csv.writerow(row)
     except Exception:
         context.logger.exception("after feature 阶段写入csv文件出错",exc_info=True)
 
@@ -31,9 +31,9 @@ def before_scenario(context, scenario):
 
 
 def after_scenario(context, scenario):
-    header = [context.feature.name,scenario.name,scenario.status]
+    row = [context.feature.name,scenario.name,scenario.status,",".join(scenario.tags)]
     if context.csv:
-        context.csv.writerow(header)
+        context.csv.writerow(row)
 
 
 def before_all(context):
@@ -42,18 +42,18 @@ def before_all(context):
         # 设置logger
         context.logger = LogHelper.set_up_logger()
         # 写入csv Header
-        header = ["Feature", "Scenario","scenario_result"]
+        header = ["Feature", "Scenario","Scenario_result","Tags","Result"]
         f_csv = csv.writer(open(os.path.join(LogHelper.root_result,"result.csv"),"w",newline=''))
         f_csv.writerow(header)
         context.csv = f_csv
         # 读取配置文件连接手机
         device = Device()
         device.get_device("device.xml")
-        context.driver = device.connect_device('http://localhost:4723/wd/hub')
+        context.device = device.devices   # 传递device信息到后续步骤
+        context.driver = device.connect_device('http://localhost:4723/wd/hub') # 所有feature共用一个driver
     except Exception as e:
         print("连接手机过程中出现错误"+str(e))
         context.logger.exception("连接手机过程中出现错误",exc_info=True)
-
 
 # 关闭连接
 def after_all(context):
@@ -64,3 +64,6 @@ def after_all(context):
             context.driver.quit()
         except Exception:
             context.logger.exception("can not quit dirver", exc_info=True)
+
+    # 执行后续步骤，生成报告
+    ReporterHelper()
