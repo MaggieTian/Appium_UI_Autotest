@@ -21,7 +21,6 @@ if root:
 command += r" >{path}{sep}{filename}".format(path=root_path+os.sep+"Log", sep=os.sep, filename="out.txt")
 logging.info("run command is {cmd}".format(cmd=command))
 
-
 test_path = root_path+os.sep+"Test"
 os.chdir(test_path)
 p = os.popen("dir")

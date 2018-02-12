@@ -12,57 +12,6 @@
     <script src="echarts.js"></script>
 </head>
 <body>
-<h1 align="center">***** **** Test  Detail Report</h1><br>
-<h3 align="center">执行日期：2018 89 0088 </h3><br>
-<!--<div class="container">-->
-    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-    <div class="row">
-        <div class="col-md-4 col-md-offset-2" id="main" style="width: 600px;height:400px;" align="center"></div>
-        <div class="col-md-2 col-md-offset-2">
-            <table class="table table-striped">
-                <tr>
-                    <td>dsda</td>
-                    <td>dsdasadfafgsgfsgfsgs<br>adfafadfa<br></td>
-
-                </tr>
-                <tr>
-                     <td>dsda</td>
-                    <td>dsda</td>
-                </tr>
-                <tr>
-                    <td>dsda</td>
-                    <td>dsda</td>
-
-                </tr>
-
-            </table>
-        </div>
-    </div>
-<!--</div>-->
-    <table id= "detail" border="4" align="center" class="table table-condensed">
-        <tr>
-            <th>Feature</th>
-            <th>Scenario</th>
-            <th>Scenario Result</th>
-            <th>Result</th>
-
-        </tr>
-        <tr class="success">
-            <td>adgddddddddddddddddddddddddddddagd</td>
-            <td>adgddddddddddddddddddddddddddddagd</td>
-            <td>adgddddddddddddddddddddddddddddagd</td>
-            <td>adgddddddddddddddddddddddddddddagd</td>
-
-        </tr>
-        <tr>
-            <td>adgddddddddddddddddddddddddddddagd</td>
-            <td>adgddddddddddddddddddddddddddddagd</td>
-            <td>adgddddddddddddddddddddddddddddagd</td>
-            <td>adgddddddddddddddddddddddddddddagd</td>
-
-        </tr>
-
-    </table>
     <!--pie charts-->
     <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
@@ -71,8 +20,7 @@
         // 指定图表的配置项和数据
         option = {
     title : {
-        text: '某站点用户访问来源',
-        subtext: '纯属虚构',
+        text: '测试结果',
         x:'center'
     },
     tooltip : {
@@ -82,20 +30,17 @@
     legend: {
         orient: 'vertical',
         left: 'left',
-        data: ['直接访问','邮件营销','联盟广告','视频广告','搜索引擎']
+        data: ['成功','失败']
     },
     series : [
         {
-            name: '访问来源',
+            name: '测试结果数据',
             type: 'pie',
             radius : '55%',
             center: ['50%', '60%'],
             data:[
-                {value:335, name:'直接访问'},
-                {value:310, name:'邮件营销'},
-                {value:234, name:'联盟广告'},
-                {value:135, name:'视频广告'},
-                {value:1548, name:'搜索引擎'}
+                {value:{passed_cnt}, name:'成功'},
+                {value:{failed_cnt}, name:'失败'}
             ],
             itemStyle: {
                 emphasis: {
@@ -107,8 +52,8 @@
         }
     ]
 };
-        // 使用刚指定的配置项和数据显示图表。
-        myChart.setOption(option);
+   // 使用刚指定的配置项和数据显示图表。
+   myChart.setOption(option);
     </script>
  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>

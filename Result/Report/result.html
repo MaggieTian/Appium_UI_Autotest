@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>Test Report</title>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- 引入 echarts.js -->
+    <script src="echarts.js"></script>
+</head>
+<body>
+<h1 align="center">***** **** Test  Detail Report</h1><br>
+<h3 align="center">执行日期：2018 89 0088 </h3><br>
+<!--<div class="container">-->
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div class="row">
+        <div class="col-md-4 col-md-offset-2" id="main" style="width: 600px;height:400px;" align="center"></div>
+        <div class="col-md-2 col-md-offset-2">
+            <table class="table table-striped">
+               <tr><td>platformName</td><td>Android</td></tr>
+<tr><td>platformVersion</td><td>5.1</td></tr>
+<tr><td>deviceName</td><td>58b9f28a7d52</td></tr>
+<tr><td>appPackage</td><td>com.sina.weibo</td></tr>
+<tr><td>Feature总计</td><td>0</td></tr><tr><td>scenario总计</td><td>0</td></tr>
+
+            </table>
+        </div>
+    </div>
+<!--</div>-->
+    <table id= "detail" border="4" align="center" class="table table-condensed">
+        <tr>
+            <th>Feature</th>
+            <th>Scenario</th>
+            <th>Tag</th>
+            <th>Scenario Result</th>
+            <th>Result</th>
+
+        </tr>
+       <tr class='success'><td>Hello World</td><td>test1</td><td>passed</td><td>base</td><td>passed</td></tr>
+<tr class='danger'><td>every function test in HomePage</td><td>run test login in homepage</td><td>failed</td><td>base</td><td>failed</td></tr>
+<tr class='success'><td></td><td>test waiting for</td><td>passed</td><td>base</td><td></td></tr>
+
+    </table>
+    <!--pie charts-->
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+
+        // 指定图表的配置项和数据
+        option = {
+    title : {
+        text: '某站点用户访问来源',
+        subtext: '纯属虚构',
+        x:'center'
+    },
+    tooltip : {
+        trigger: 'item',
+        formatter: "{a} <br/>{b} : {c} ({d}%)"
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        data: ['直接访问','邮件营销','联盟广告','视频广告','搜索引擎']
+    },
+    series : [
+        {
+            name: '访问来源',
+            type: 'pie',
+            radius : '55%',
+            center: ['50%', '60%'],
+            data:[
+                {value:335, name:'直接访问'},
+                {value:310, name:'邮件营销'},
+                {value:234, name:'联盟广告'},
+                {value:135, name:'视频广告'},
+                {value:1548, name:'搜索引擎'}
+            ],
+            itemStyle: {
+                emphasis: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            }
+        }
+    ]
+};
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
+ <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</body>
+</html>

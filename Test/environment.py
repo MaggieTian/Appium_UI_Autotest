@@ -14,30 +14,34 @@ from Util.reporter_helper import ReporterHelper
 
 '''
 
-
 def before_feature(context,feature):
     try:
         context.worksheet.write(ReporterHelper.ROW,ReporterHelper.COL, feature.name)
+        context.feature_row = ReporterHelper.ROW
     except:
         context.logger.exception("write in excel in before_feature steps happend exception",exc_info= True)
 
+
 def after_feature(context, feature):
     try:
-        context.worksheet.write(ReporterHelper.ROW,ReporterHelper.COL+len(ReporterHelper.TABLE_HEAD)-1, feature.status)
+        context.worksheet.write(context.feature_row,ReporterHelper.COL+len(ReporterHelper.TABLE_HEAD)-1, feature.status)
     except:
         context.logger.exception("write in excel in after_feature steps happend exception",exc_info= True)
 
+
 def before_scenario(context, scenario):
     pass
+
 
 def after_scenario(context, scenario):
 
     # 分别写入scenario.name、scenario.status、scenario.tags
     try:
-        for col,vaule in zip(list(range(1,len(ReporterHelper.TABLE_HEAD-1))),[scenario.name,scenario.status,scenario.tags]):
+        for col,vaule in zip(list(range(1,len(ReporterHelper.TABLE_HEAD)-1)),[scenario.name,scenario.status,",".join(scenario.tags)]):
             context.worksheet.write(ReporterHelper.ROW , col, vaule)
         ReporterHelper.ROW += 1  # 每运行一个scenario行数+1
-    except:
+
+    except Exception:
         context.logger.exception("write in excel in after_scenario steps happend exception",exc_info= True )
 
 

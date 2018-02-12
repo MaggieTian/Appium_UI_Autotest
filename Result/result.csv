@@ -1,0 +1,4 @@
+Feature,every function test in HomePage,,
+Scenario,run test login in homepage,failed,base
+Scenario,test waiting for,passed,base
+Result,failed,,
