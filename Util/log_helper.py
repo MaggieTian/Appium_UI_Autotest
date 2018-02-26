@@ -18,6 +18,7 @@ class LogHelper:
     config_file_path = os.path.join(project_path, "Config"+os.sep)                 # 获取Config文件夹路径,所有配置文件都放在config文件夹下
     root_log_path = os.path.join(project_path,"Log"+os.sep)                        # 获取项目存放Log路径
     root_result = os.path.join(project_path, "Result"+os.sep)                      # 获取存放结果的根目录Result
+    root_report = os.path.join(root_result,"Report"+os.sep)                       # 获取存放报告的路径Report
 
     @staticmethod
     def setup_logging(default_path='log_config.json', default_level=logging.INFO):
