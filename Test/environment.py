@@ -55,8 +55,13 @@ def before_all(context):
         # 读取配置文件连接手机
         device = Device()
         device.get_device("device.xml")
+        # 获取手机相关信息
+        # phone_info = device.getPhoneInfo()
+        # device.devices['brand'] = phone_info['brand']
+        # device.devices['model'] = phone_info['model']
+        # device.devices['size'] = device.get_app_pix()
         context.device = device.devices   # 传递device信息到后续步骤
-        context.driver = device.connect_device('http://localhost:4723/wd/hub') # 所有feature共用一个driver
+        context.driver = device.connect_device('http://localhost:4723/wd/hub')  # 所有feature共用一个driver
     except Exception as e:
         context.logger.exception("连接手机过程中出现错误", exc_info=True)
 
@@ -77,4 +82,7 @@ def after_all(context):
             context.logger.exception("save the result excel file happened exception",exc_info = True)
 
     # 执行后续步骤，生成报告
-    # ReporterHelper()
+
+    report = ReporterHelper(os.path.join(LogHelper.root_result, "result.xls"),
+                            device= context.device)
+    report.generate_report(os.path.join(LogHelper.root_report, "template.html"))

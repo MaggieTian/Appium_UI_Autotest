@@ -23,5 +23,4 @@ logging.info("run command is {cmd}".format(cmd=command))
 
 test_path = root_path+os.sep+"Test"
 os.chdir(test_path)
-p = os.popen("dir")
 os.popen(command)

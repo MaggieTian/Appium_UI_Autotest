@@ -41,8 +41,9 @@ DEVICE_TABLE = '''
 # 测试结果汇总情况
 TOTAL_DIV = '''
 <div class="row">
-    <div class="col-md-1 col-md-offset-10"><span style="background-color:green"><b>Scenario成功：{suc_cnt}</b></span></div>
-    <div class="col-md-1"><span style="background-color:red"><b>Scenario失败：{fail_cnt}</b></span></div>
+    <div class="col-md-1 col-md-offset-9"><span><b>Scenario Result</b></span></div>
+    <div class="col-md-1"><span style="background-color:green"><b>成功：{suc_cnt}</b></span></div>
+    <div class="col-md-1"><span style="background-color:red"><b>失败：{fail_cnt}</b></span></div>
 </div>
 '''
 
@@ -80,9 +81,9 @@ class ReporterHelper:
                     for j in detail:
                         index_html.write(j)
                 if line.find("passed_cnt") > -1:
-                    line.replace("passed_cnt",str(self.scenario['suc_cnt']))
+                    line = line.replace("passed_cnt",str(self.scenario['suc_cnt']))
                 if line.find("failed_cnt")> -1:
-                    line.replace("failed_cnt",str(self.scenario['fail_cnt']))
+                    line = line.replace("failed_cnt",str(self.scenario['fail_cnt']))
                 index_html.write(line)
 
     #  根据device信息生成表格信息
@@ -94,6 +95,7 @@ class ReporterHelper:
         else:
             logger.error("there is no device info!")
 
+    # 读取测试结果文件生成相应的html table中的每一行
     def generate_detail_table(self):
 
         if os.path.exists(self.result_file):
@@ -123,7 +125,7 @@ class ReporterHelper:
         else:
             logger.error("测试结果文件不存在！")
 
-
+    # 生成测试结果文件result.xls,并写好表头
     @staticmethod
     def get_excel_table():
         workbook = xlwt.Workbook("utf-8")                                                   # 新建工作簿

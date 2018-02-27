@@ -17,6 +17,7 @@ from Util.locate_helper import LocateHeper
 
 project_path = os.path.abspath(os.path.join(os.path.dirname(__file__),".."))  # 获取项目根目录路径
 xml_file_path = os.path.join(project_path,r"Config/")  # 获取Config文件夹路径,所有配置文件都放在config文件夹下
+logger = logging.getLogger("output")   # 获取logger
 
 class Device:
 
@@ -108,8 +109,13 @@ class Device:
 
     # 得到手机分辨率
     def get_app_pix(self):
-        result = os.popen("adb -s " + self.devices['deviceName']+ " shell wm size", "r")
-        return result.readline().split("Physical size:")[1]
+        if self.devices:
+            result = os.popen("adb -s " + self.devices['deviceName']+ " shell wm size", "r")
+            return result.readline().split("Physical size:")[1]
+        else:
+            logging.error("there is no device info,please check the connection of mobile phone")
+
+
 
     # 得到手机屏幕大小
     @classmethod
