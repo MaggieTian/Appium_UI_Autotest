@@ -18,22 +18,16 @@ these steps not belong to some page
 @When("click {element} in {Page}")
 def click_element(context,element,Page):
 
-    try:
-        page = check_page(Page)
-        element = LocateHeper.get_protect_attribute(page, element)
-        LocateHeper(context.driver).find(element).click()
-    except Exception:
-        context.logger.exception("click {element} in {Page} occurs exception".format(element=element, Page=Page), exc_info=True)
+    page = check_page(Page)
+    element = LocateHeper.get_protect_attribute(page, element)
+    LocateHeper(context.driver).find(element).click()
 
 
 @When("{element} input {text} in {page}")
 def input_text(context, element, text, page):
-    try:
-        page = check_page(page)
-        element = LocateHeper.get_protect_attribute(page,element)
-        LocateHeper(context.driver).find(element).send_keys(text)
-    except Exception:
-        context.logger.exception("{element} input {text} in {page} occurs exception".format(element=element,text=text,page=page),exc_info=True)
+    page = check_page(page)
+    element = LocateHeper.get_protect_attribute(page,element)
+    LocateHeper(context.driver).find(element).send_keys(text)
 
 
 @When("waiting for {n} seconds")
@@ -78,15 +72,15 @@ def check_element(context, element, page):
 
 @When("Switch to alert window and click {button} in {page}")
 def swich_and_click(context, button, page):
-    try:
-        context.driver.switch_to_alert()
-        page = check_page(page)
-        button = LocateHeper.get_protect_attribute(page, button)
-        LocateHeper(context.driver).find(button).click()
-    except Exception:
-        context.driver.get_screenshot_as_file(r'/Users/tianqi/Desktop/study/Appium_UI_Autotest/Log/test.png')
-        context.logger.error("can not Switch to alert window and click {button}".format(button=button))
+    context.driver.switch_to_alert()
+    page = check_page(page)
+    button = LocateHeper.get_protect_attribute(page, button)
+    LocateHeper(context.driver).find(button).click()
 
+@Then("The text of {element} should be {value} in {page}")
+def find_text(context, element,value,page):
+    page = check_page(page)
+    element = LocateHeper.get_protect_attribute(page,element)
+    if LocateHeper(context.driver).find(element).get_text() != value:
+        raise Exception("The text of {element} is not {value} in {page}".format(element=element,value=value,page=page))
 
-def find_text(text):
-    pass

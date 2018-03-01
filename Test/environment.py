@@ -2,6 +2,7 @@
 # @Time    : 2018/1/21
 # @Author  : MaggitTian
 # @File    : environment.py
+import logging
 
 from Util.device import Device
 from Util.log_helper import LogHelper

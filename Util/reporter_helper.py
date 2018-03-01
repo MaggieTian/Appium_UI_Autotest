@@ -80,6 +80,7 @@ class ReporterHelper:
                     index_html.write(DETAIL_TABLE)                # 写入详细测试结果
                     for j in detail:
                         index_html.write(j)
+                    index_html.write(TOTAL_DIV.format(suc_cnt=self.scenario['suc_cnt'], fail_cnt=self.scenario['fail_cnt'])) # 写入汇总情况
                 if line.find("passed_cnt") > -1:
                     line = line.replace("passed_cnt",str(self.scenario['suc_cnt']))
                 if line.find("failed_cnt")> -1:
@@ -121,7 +122,6 @@ class ReporterHelper:
                 yield decrate + "<td>{feature}</td><td>{scenario}</td><td>{scenario_result}</td><td>{tag}</td><td>{result}</td></tr>\n".\
                     format(feature=row_values.Feature, scenario=row_values.Scenario, scenario_result=row_values.Scenario_Result,tag= row_values.Tag, result=row_values.Result)
             yield "</table>\n"
-            yield TOTAL_DIV.format(suc_cnt=self.scenario['suc_cnt'], fail_cnt=self.scenario['fail_cnt'])
         else:
             logger.error("测试结果文件不存在！")
 
