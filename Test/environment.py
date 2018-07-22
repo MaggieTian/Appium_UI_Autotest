@@ -4,6 +4,8 @@
 # @File    : environment.py
 import logging
 
+import sys
+sys.path.append('/Users/tianqi/Desktop/study/Appium_UI_Autotest/Util/device.py')
 from Util.device import Device
 from Util.log_helper import LogHelper
 import os

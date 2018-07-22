@@ -3,7 +3,7 @@
 # @Time    : 2018/2/9
 # @Author  : MaggieTian
 # @File    : reporter_helper.py
-import csv
+
 from Util.log_helper import LogHelper
 import logging
 import os

@@ -44,7 +44,7 @@ class LocateHeper(object):
     def locator(method,vaule):
         if method in _LOCATOR_MAP.keys():
 
-            return _LOCATOR_MAP[method],vaule
+            return _LOCATOR_MAP[method], vaule
         else:
             logging.error("{0} is not in find method".format(method))
             raise Exception

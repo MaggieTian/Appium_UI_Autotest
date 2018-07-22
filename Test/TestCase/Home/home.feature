@@ -4,6 +4,5 @@ Feature: Hello World
     When slide screen
 
 
-
   Scenario: test2
     When waiting for 1 seconds

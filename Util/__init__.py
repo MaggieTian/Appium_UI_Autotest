@@ -3,3 +3,6 @@
 # @Time    : 2018/1/11
 # @Author  : tianqi
 # @File    : __init__.py.py
+
+from device import Device
+__all__ = ['Device']
