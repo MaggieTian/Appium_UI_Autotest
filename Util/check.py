@@ -10,7 +10,6 @@ from Util.map import _Page_Map
 验证传入的page参数是否在映射关系中
 '''
 
-
 def check_page(page):
     if page in _Page_Map.keys():
         return _Page_Map[page]()  # 能在page_map中找到相应的映射关系就返回page对象
