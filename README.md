@@ -43,6 +43,8 @@ this is the introduction and development document:[Allure Framework](https://doc
   
   then you will see the allure report that in a opening browser,such as below picture:
   
+  ![Allure Report](https://github.com/MaggieTian/Appium_UI_Autotest/blob/master/Photo/allure_report.png?raw=true)
+  
   
 
 ## Integrate Allure Framework In Jenkins
